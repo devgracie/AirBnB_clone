@@ -19,7 +19,7 @@ class BaseModel:
             - *args: list of arguments
             - **kwargs: dict of key-values arguments
         """
-
+        DATE_TIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%f'
         if kwargs is not None and kwargs != {}:
             for key in kwargs:
                 if key == "created_at":
@@ -37,11 +37,11 @@ class BaseModel:
             storage.new(self)
 
     def __str__(self):
-        """Returns a human-readable string representation
-        of an instance."""
-
-        return "[{}] ({}) {}".\
-            format(type(self).__name__, self.id, self.__dict__)
+        """
+        Returns string representation of the class
+        """
+        return "[{}] ({}) {}".format(self.__class__.__name__,
+                                     self.id, self.__dict__)
 
     def save(self):
         """Updates the updated_at attribute
